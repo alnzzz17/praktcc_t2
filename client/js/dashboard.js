@@ -95,6 +95,36 @@ document.getElementById("accountForm").addEventListener("submit", function (e) {
         .catch(error => console.error("Error:", error));
 });
 
+// Fungsi untuk menghapus akun
+function deleteAccount() {
+    const confirmDelete = confirm("Are you sure you want to delete your account? This action cannot be undone.");
+    if (confirmDelete) {
+        const userData = decodeToken(token); // Decode token untuk mendapatkan id pengguna
+        const userId = userData.id; // Ambil id pengguna dari token
+
+        fetch(`http://localhost:5000/user/delete/${userId}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                alert("Account deleted successfully.");
+                sessionStorage.clear(); // Hapus semua data dari sessionStorage
+                window.location.href = "../pages/login.html"; // Redirect ke halaman login
+            } else {
+                alert("Failed to delete account: " + data.message);
+            }
+        })
+        .catch(error => console.error("Error deleting account:", error));
+    }
+}
+
+// Tambahkan event listener untuk tombol hapus akun
+document.getElementById("deleteAccountBtn").addEventListener("click", deleteAccount);
+
 // Fungsi untuk mengambil dan menampilkan catatan
 function fetchNotes() {
     fetch("http://localhost:5000/note/all", {
@@ -218,8 +248,6 @@ function deleteNote(noteId) {
         })
         .catch(error => console.error("Error deleting note:", error));
 }
-
-
 
 // Jalankan fetchNotes saat halaman dimuat
 document.addEventListener("DOMContentLoaded", fetchNotes);

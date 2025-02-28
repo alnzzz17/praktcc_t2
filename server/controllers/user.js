@@ -113,7 +113,7 @@ const deleteUser = async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
         const loggedInUserId = decoded.id;
 
-        // ambil ID user yang akan diedit dari params
+        // ambil id user yang akan diedit dari params
         const { id } = req.params;
 
         // cek apakah user yang sedang login mencoba mengedit akun user lain
@@ -139,36 +139,36 @@ const deleteUser = async (req, res, next) => {
 // EDIT USER ACCOUNT - TESTED
 const editUser = async (req, res) => {
     try {
-        // Ambil token dari header
+        // ambil token dari header
         const authorization = req.headers.authorization;
         if (!authorization || !authorization.startsWith("Bearer ")) {
             return res.status(403).json({ status: "error", message: "You need to login" });
         }
 
-        // Decode token untuk mendapatkan userId yang sedang login
+        // decode token untuk mendapatkan userId yang sedang login
         const token = authorization.substring(7);
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
         const id = decoded.id; // Ambil ID user dari token
 
-        // Ambil data yang akan diperbarui dari request body
+        // ambil data yang akan diperbarui dari request body
         const { username, fullName, password } = req.body;
 
-        // Cek apakah user yang ingin diedit ada
+        // cek apakah user yang ingin diedit ada
         const user = await User.findByPk(id);
         if (!user) {
             return res.status(404).json({ status: "error", message: "User not found" });
         }
 
-        // Hash password jika diberikan
+        // hash password jika diberikan
         let updatedFields = { username, fullName };
         if (password) {
             updatedFields.password = await bcrypt.hash(password, 10);
         }
 
-        // Update user
+        // update user
         await user.update(updatedFields);
 
-        // Ambil kembali data user setelah update
+        // ambil kembali data user setelah update
         const updatedUser = await User.findByPk(id, {
             attributes: ["id", "username", "fullName"]
         });

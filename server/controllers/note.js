@@ -69,15 +69,15 @@ const getNoteById = async (req, res) => {
     }
 };
 
-// HAPUS NOTE
+// DELETE NOTE - TESTED
 const deleteNote = async (req, res) => {
     try {
         const decoded = verifyToken(req);
 
-        // Cari note berdasarkan id
+        // cari note berdasarkan id
         const note = await Note.findByPk(req.params.noteId);
 
-        // Jika note tidak ditemukan, kembalikan error 404
+        // jika note tidak ditemukan, kembalikan error 404
         if (!note) {
             return res.status(404).json({
                 status: "error",
@@ -85,7 +85,7 @@ const deleteNote = async (req, res) => {
             });
         }
 
-        // Pastikan user yang menghapus adalah pemilik note
+        // pastikan user yang menghapus adalah pemilik note
         if (note.userId !== decoded.id) {
             return res.status(403).json({
                 status: "error",
@@ -93,7 +93,7 @@ const deleteNote = async (req, res) => {
             });
         }
 
-        // Hapus note
+        // hapus note
         await note.destroy();
 
         res.status(200).json({
@@ -137,20 +137,20 @@ const getAllNotes = async (req, res) => {
 const editNote = async (req, res) => {
     try {
         const decoded = verifyToken(req);
-        const userId = decoded.id; // Ambil ID user dari token
+        const userId = decoded.id;
         const { noteTitle, noteContent } = req.body;
-        const noteId = req.params.noteId; // Ambil noteId dari parameter URL
+        const noteId = req.params.noteId;
 
-        // Pastikan hanya mengedit note yang dimiliki oleh user yang login
+        // pastikan hanya mengedit note yang dimiliki oleh user yang login
         const note = await Note.findOne({
-            where: { id: noteId, userId: userId } // Filter berdasarkan noteId dan userId
+            where: { id: noteId, userId: userId } // filter berdasarkan noteId dan userId
         });
 
         if (!note) {
             return res.status(403).json({ status: "error", message: "Unauthorized to edit this note." });
         }
 
-        // Update note
+        // update note
         const editedNote = await note.update({ noteTitle, noteContent });
 
         res.status(200).json({ 

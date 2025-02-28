@@ -50,12 +50,10 @@ association()
     console.log(err.message);
   });
 
-  // Serve static files dari folder client
+  // serve static files dari folder client
 app.use(express.static(path.join(__dirname, '../client')));
 
-//app.use('/temp', express.static(path.join(__dirname, 'temp')));
-
-// Route untuk halaman login
+// route untuk halaman login
 app.get('/user/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/pages/login.html'));
 });
