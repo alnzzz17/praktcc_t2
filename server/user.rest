@@ -1,0 +1,59 @@
+### REGISTER
+
+POST http://localhost:5000/user/register
+Content-Type: application/json
+
+{
+    "username": "hiuSucipto", 
+    "password":"suciptogahar", 
+    "fullName": "Sucipto"
+}
+
+### REGISTER
+
+POST http://localhost:5000/user/register
+Content-Type: application/json
+
+{
+    "username": "getWellSoon", 
+    "password":"semogagws", 
+    "fullName": "Gunawan Septiadi"
+}
+
+### LOGIN
+
+POST http://localhost:5000/user/login
+Content-Type: application/json
+
+{
+    "username": "getWellSoon", 
+    "password":"semogagws"
+}
+
+### Edit User Profile 2
+
+PUT http://localhost:5000/user/edit/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJnZXRXZWxsU29vbiIsImZ1bGxOYW1lIjoiR3VuYXdhbiBTZXB0aWFkaSIsImlhdCI6MTc0MDU2ODE3NiwiZXhwIjoxNzQwNTcxNzc2fQ.R-KGHhvPbXIc6v1paQRnmdyzbTSf_O3pYWprlNwqL-I
+Content-Type: application/json
+
+{
+    "username": "gunawans",
+    "fullName": "Gunawan Septiansyah"
+}
+
+### Edit User Profile 1
+
+PUT http://localhost:5000/user/edit/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzY2lwdG9tayIsImZ1bGxOYW1lIjoiU3VjaXB0byIsImlhdCI6MTc0MDU2OTIzNSwiZXhwIjoxNzQwNTcyODM1fQ.Yxk05sIBUVBZtGRYPHzbV3nRQgpeS0cuuYfYSubBNHM
+Content-Type: application/json
+
+{
+    "username": "hiuSucipto",
+    "password": "HIUsucipto"
+}
+
+### DELETE USER
+
+DELETE http://localhost:5000/user/delete/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYWxhaFNhdHUiLCJmdWxsTmFtZSI6IlVzZXIgU2FsYWgiLCJpYXQiOjE3NDA1Njk5MzAsImV4cCI6MTc0MDU3MzUzMH0.3DotNG9dEXHsRrsgndjH7pWp4YGBu5f8TkYpWzBpQvA
+Content-Type: application/json
