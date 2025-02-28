@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (data.status === 'success') {
-                showNotification('Registrasi berhasil! Mengalihkan ke login...', false);
+                showNotification('Registration successful! Redirecting to login page...', false);
                 setTimeout(() => {
                     window.location.href = '../pages/login.html';
                 }, 1000);

@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sessionStorage.setItem('userData', JSON.stringify(data.user));
                 sessionStorage.setItem('loginMessage', data.message);
 
-                showNotification('Login berhasil! Mengalihkan...', false);
+                showNotification('Login successful! Redirecting...', false);
                 setTimeout(() => {
                     window.location.href = '../pages/dashboard.html';
                 }, 1000);
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('Error during login:', error);
-            showNotification('Login gagal! Coba lagi.', true);
+            showNotification('Login failed! Please try again.', true);
         }
     });
 
