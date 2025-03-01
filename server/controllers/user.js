@@ -148,7 +148,7 @@ const editUser = async (req, res) => {
         // decode token untuk mendapatkan userId yang sedang login
         const token = authorization.substring(7);
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
-        const id = decoded.id; // Ambil ID user dari token
+        const id = decoded.id; // ambil id user dari token
 
         // ambil data yang akan diperbarui dari request body
         const { username, fullName, password } = req.body;

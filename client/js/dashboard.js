@@ -151,8 +151,8 @@ function displayNotes(notes) {
     container.innerHTML = "";
 
     notes.forEach(note => {
-        const title = note.noteTitle.length > 50 ? note.noteTitle.substring(0, 50) + "..." : note.noteTitle;
-        const content = note.noteContent.length > 150 ? note.noteContent.substring(0, 150) + "..." : note.noteContent;
+        const title = note.noteTitle;
+        const content = note.noteContent;
 
         // Escape karakter baris baru
         const escapedContent = content.replace(/\n/g, "\\n");
